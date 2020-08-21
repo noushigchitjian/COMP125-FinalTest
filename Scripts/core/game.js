@@ -1,4 +1,8 @@
 "use strict";
+// Author : NOUSHIG CHITJIAN
+// Student ID : 301117936
+// Date : AUG.19,2020
+// Descrption : THIS TYPESCRIPT FILE WILL TRANSPILE INTO GAME.JS ^_^
 let Game = (function () {
     // variable declarations
     let canvas = document.getElementsByTagName('canvas')[0];
@@ -61,15 +65,15 @@ let Game = (function () {
    
     //this function will create the objects
     function buildInt() {
-        //create button
+        //this will create a button.
         Button = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
         stage.addChild(Button);
-        //create two dices
+        //this creates two dices.
         leftSideDice = new Core.GameObject("1", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y - 80, true);
         stage.addChild(leftSideDice);
         rightSideDice = new Core.GameObject("1", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y - 80, true);
         stage.addChild(rightSideDice);
-        //create two text labels under two dices respectively
+        //this creates two text labels under each dice respectively.
         leftSideNumber = new UIObjects.Label("1", "20px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 35, true);
         stage.addChild(leftSideNumber);
         rightSideNumber = new UIObjects.Label("1", "20px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 35, true);
