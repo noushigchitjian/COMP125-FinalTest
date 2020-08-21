@@ -51,19 +51,81 @@ let Game = (function () {
     function Update() {
         stage.update();
     }
+
+   
+    //this function will create the objects
+    function buildInt() {
+        //create button
+        Button = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
+        stage.addChild(Button);
+        //create two dices
+        leftSideDice = new Core.GameObject("1", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y - 80, true);
+        stage.addChild(leftSideDice);
+        rightSideDice = new Core.GameObject("1", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y - 80, true);
+        stage.addChild(rightSideDice);
+        //create two text labels under two dices respectively
+        leftSideNumber = new UIObjects.Label("1", "20px", "Consolas", "#000000", Config.Game.CENTER_X - 150, Config.Game.CENTER_Y + 35, true);
+        stage.addChild(leftSideNumber);
+        rightSideNumber = new UIObjects.Label("1", "20px", "Consolas", "#000000", Config.Game.CENTER_X + 150, Config.Game.CENTER_Y + 35, true);
+        stage.addChild(rightSideNumber);
+    }
+
+        //this function will change the Result of the diceR every time clicked on the button
+        function rollTheDice() {
+            let diceR = [" ", " "];
+            let result = [0, 0];
+            for (let diceRoll = 0; diceRoll < 2; diceRoll++) {
+                result[diceRoll] = Math.floor((Util.Mathf.RandomRange(1, 6)));
+                switch (result[diceRoll]) {
+                    case result[diceRoll] = 1:
+                        diceR[diceRoll] = "1";
+                        break;
+                    case result[diceRoll] = 2:
+                        diceR[diceRoll] = "2";
+                        break;
+                    case result[diceRoll] = 3:
+                        diceR[diceRoll] = "3";
+                        break;
+                    case result[diceRoll] = 4:
+                        diceR[diceRoll] = "4";
+                        break;
+                    case result[diceRoll] = 5:
+                        diceR[diceRoll] = "5";
+                        break;
+                    case result[diceRoll] = 6:
+                        diceR[diceRoll] = "6";
+                        break;
+                }
+            }
+            return diceR;
+        }
+
+           
+ 
+ 
+        //this function will create the logic
+    function intLogic() {
+        Button.on("click", () => {
+            
+            //this will show the message whenever button gets clicked
+            console.log("Roll button clicked !");
+            
+            //this will change the text and the image of the dice depending on the dice number
+            let dice = rollTheDice();
+            leftSideDice.image = assets.getResult(dice[0]);
+            leftSideNumber.setText(dice[0].toString());
+            rightSideDice.image = assets.getResult(dice[1]);
+            rightSideNumber.setText(dice[1].toString());
+        });
+    }
     /**
      * This is the main function of the Game (where all the fun happens)
-     *
+     * this functions will get implemented on page load
      */
     function Main() {
         console.log(`%c Main Function`, "color: grey; font-size: 14px; font-weight: bold;");
-        exampleLabel = new UIObjects.Label("An Example Label", "40px", "Consolas", "#000000", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
-        stage.addChild(exampleLabel);
-        exampleButton = new UIObjects.Button("button", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
-        stage.addChild(exampleButton);
-        exampleButton.on("click", () => {
-            console.log("example button clicked");
-        });
+        buildInt();
+        intLogic();
     }
     window.addEventListener('load', Preload);
 })();
