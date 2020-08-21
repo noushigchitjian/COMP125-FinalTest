@@ -4,8 +4,14 @@ let Game = (function () {
     let canvas = document.getElementsByTagName('canvas')[0];
     let stage;
     let assets;
-    let exampleLabel;
-    let exampleButton;
+    let Button;
+    let rightSideDice;
+    let leftSideDice;
+    let rightSideNumber;
+    let leftSideNumber;
+    
+
+
     let assetManifest = [
         { id: "1", src: "./Assets/images/1.png" },
         { id: "2", src: "./Assets/images/2.png" },
@@ -104,20 +110,20 @@ let Game = (function () {
  
  
         //this function will create the logic
-    function intLogic() {
-        Button.on("click", () => {
-            
-            //this will show the message whenever button gets clicked
-            console.log("Roll button clicked !");
-            
-            //this will change the text and the image of the dice depending on the dice number
-            let dice = rollTheDice();
-            leftSideDice.image = assets.getResult(dice[0]);
-            leftSideNumber.setText(dice[0].toString());
-            rightSideDice.image = assets.getResult(dice[1]);
-            rightSideNumber.setText(dice[1].toString());
-        });
-    }
+        function intLogic() {
+            Button.on("click", () => {
+                
+                //this will show the message whenever button gets clicked
+                console.log("Roll button clicked !");
+                
+                //this will change the text and the image of the dice depending on the dice number
+                let dice = rollTheDice();
+                leftSideDice.image = assets.getResult(dice[0]);
+                leftSideNumber.setText(dice[0].toString());
+                rightSideDice.image = assets.getResult(dice[1]);
+                rightSideNumber.setText(dice[1].toString());
+            });
+        }
     /**
      * This is the main function of the Game (where all the fun happens)
      * this functions will get implemented on page load
